@@ -11,8 +11,10 @@ export default function About() {
 
     return (
         <>
-            <h1>Payments</h1>
-            {isLoading ? <p>Loading...</p> : <PaymentsTable data={data || []} />}
+            <div className="container mx-auto">
+                <h1 className="text-5xl font-bold mt-0 mb-6">Payments</h1>
+                {isLoading ? <p>Loading...</p> : <PaymentsTable data={data || []} />}
+            </div>
         </>
     )
 }
