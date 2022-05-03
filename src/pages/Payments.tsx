@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
 import { API_GET_PAYMENTS } from "../api/payments";
+import PaymentsTable from "../components/PaymentsTable";
 
 export default function About() {
 
@@ -11,6 +12,7 @@ export default function About() {
     return (
         <>
             <h1>Payments</h1>
+            {isLoading ? <p>Loading...</p> : <PaymentsTable data={data || []} />}
         </>
     )
 }

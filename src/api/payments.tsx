@@ -1,8 +1,8 @@
-type Merchant = {
+export type Merchant = {
     name: string;
 }
 
-type Payment = {
+export type Payment = {
     status: string,
     id: string,
     created: Date,
