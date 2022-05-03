@@ -1,6 +1,17 @@
 import { Payment } from "../api/payments"
 import { useTable } from "react-table";
 
+type ChildrenProps = {
+    children: React.ReactNode
+}
+
+const Table = ({ children, ...props }: ChildrenProps) => <table className="min-w-full" {...props}>{children}</table>
+const THead = ({ children, ...props }: ChildrenProps) => <thead className="border-b" {...props}>{children}</thead>
+const TBody = ({ children, ...props }: ChildrenProps) => <thead {...props}>{children}</thead>
+const TR = ({ children, ...props }: ChildrenProps) => <tr className="border-b" {...props}>{children}</tr>
+const TH = ({ children, ...props }: ChildrenProps) => <th className="text-sm font-medium text-gray-900 px-6 py-4 text-left" {...props}>{children}</th>
+const TD = ({ children, ...props }: ChildrenProps) => <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap" {...props}>{children}</td>
+
 const columns = [
     {
         Header: 'Id',
@@ -43,34 +54,34 @@ export default function PaymentsTable({ data }: Props) {
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = TableInstance
 
     return (
-        <table {...getTableProps()}>
-            <thead>
+        <Table {...getTableProps()}>
+            <THead>
                 {headerGroups.map(headerGroup => (
-                    <tr {...headerGroup.getHeaderGroupProps()}>
+                    <TR {...headerGroup.getHeaderGroupProps()}>
                         {headerGroup.headers.map(column => (
-                            <th {...column.getHeaderProps()}>
+                            <TH {...column.getHeaderProps()}>
                                 {column.render('Header')}
-                            </th>
+                            </TH>
                         ))}
-                    </tr>
+                    </TR>
                 ))}
-            </thead>
-            <tbody {...getTableBodyProps()}>
+            </THead>
+            <TBody {...getTableBodyProps()}>
                 {rows.map((row, i) => {
                     prepareRow(row)
                     return (
-                        <tr {...row.getRowProps()}>
+                        <TR {...row.getRowProps()}>
                             {row.cells.map(cell => {
                                 return (
-                                    <td {...cell.getCellProps()}>
+                                    <TD {...cell.getCellProps()}>
                                         {cell.render('Cell')}
-                                    </td>
+                                    </TD>
                                 )
                             })}
-                        </tr>
+                        </TR>
                     )
                 })}
-            </tbody>
-        </table>
+            </TBody>
+        </Table>
     )
 }
