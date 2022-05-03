@@ -1,5 +1,7 @@
 import { Payment } from "../api/payments"
 import { useTable } from "react-table";
+import { Link } from "react-router-dom";
+import { ROUTE_PAYMENTS_SHOW } from "../pages/routes";
 
 type ChildrenProps = {
     children: React.ReactNode
@@ -16,6 +18,15 @@ const columns = [
     {
         Header: 'Id',
         accessor: 'id',
+        // @ts-ignore
+        Cell: ({ cell: { value } }) => (
+            <Link
+                className="text-blue-600 hover:text-blue-700 transition duration-300 ease-in-out mb-4"
+                to={ROUTE_PAYMENTS_SHOW(value)}
+            >
+                {value}
+            </Link>
+        )
     },
     {
         Header: 'Status',
