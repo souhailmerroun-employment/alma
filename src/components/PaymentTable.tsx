@@ -19,7 +19,11 @@ const columns = [
     },
     {
         Header: 'Due date',
-        accessor: 'due_date'
+        accessor: 'due_date',
+        // @ts-ignore
+        Cell: ({ cell: { value } }) => {
+            return new Date(value).toDateString()
+        }
     },
     {
         Header: 'Status',
