@@ -1,7 +1,8 @@
 import { Payment } from "../api/payments"
-import { useSortBy, useTable } from "react-table";
+import { useSortBy, useTable, useFilters } from "react-table";
 import { Link } from "react-router-dom";
 import { ROUTE_PAYMENTS_SHOW } from "../pages/routes";
+import { StatusFilter } from "./StatusFilter";
 
 type ChildrenProps = {
     children: React.ReactNode
@@ -26,27 +27,33 @@ const columns = [
             >
                 {value}
             </Link>
-        )
+        ),
+        disableFilters: true
     },
     {
         Header: 'Status',
-        accessor: 'status'
+        accessor: 'status',
+        Filter: StatusFilter
     },
     {
         Header: 'Customer name',
-        accessor: 'customer_name'
+        accessor: 'customer_name',
+        disableFilters: true
     },
     {
         Header: 'Amount',
-        accessor: 'amount'
+        accessor: 'amount',
+        disableFilters: true
     },
     {
         Header: 'Merchant name',
-        accessor: 'merchant.name'
+        accessor: 'merchant.name',
+        disableFilters: true
     },
     {
         Header: 'Installments count',
-        accessor: 'installmentsCount'
+        accessor: 'installmentsCount',
+        disableFilters: true
     },
 ]
 
@@ -60,7 +67,7 @@ export default function PaymentsTable({ data }: Props) {
         // @ts-ignore
         columns: columns,
         data: data
-    }, useSortBy)
+    }, useFilters, useSortBy)
 
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = TableInstance
 
@@ -76,7 +83,13 @@ export default function PaymentsTable({ data }: Props) {
                                 <span>
                                     {
                                         // @ts-ignore
-                                        column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : ''
+                                        column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : null
+                                    }
+                                </span>
+                                <span>
+                                    {
+                                        // @ts-ignore
+                                        column.canFilter ? column.render('Filter') : null
                                     }
                                 </span>
                             </TH>

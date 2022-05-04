@@ -6,9 +6,6 @@ export default function Payments() {
 
     const { isLoading, data } = useQuery("payments", API_GET_PAYMENTS);
 
-    console.log({ isLoading });
-    console.log({ data });
-
     return (
         <>
             <div className="container mx-auto">
