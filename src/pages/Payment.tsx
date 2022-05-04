@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { Link, useParams } from "react-router-dom";
 import { API_GET_PAYMENT, SinglePayment } from "../api/payment";
-import PaymentTable from "../components/Payment";
+import PaymentTable from "../components/PaymentTable";
 import { ROUTE_PAYMENTS } from "./routes";
 
 type PaymentTableRenderProps = {

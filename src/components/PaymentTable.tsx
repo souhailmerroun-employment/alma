@@ -1,6 +1,4 @@
-import { useTable } from "react-table";
-import { Link } from "react-router-dom";
-import { ROUTE_PAYMENTS_SHOW } from "../pages/routes";
+import { useTable, useSortBy } from "react-table";
 import { SinglePayment } from "../api/payment";
 
 type ChildrenProps = {
@@ -48,7 +46,7 @@ export default function PaymentTable({ data }: Props) {
         // @ts-ignore
         columns: columns,
         data: data.paymentPlan
-    })
+    }, useSortBy)
 
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = TableInstance
 
@@ -58,8 +56,15 @@ export default function PaymentTable({ data }: Props) {
                 {headerGroups.map(headerGroup => (
                     <TR {...headerGroup.getHeaderGroupProps()}>
                         {headerGroup.headers.map(column => (
-                            <TH {...column.getHeaderProps()}>
+                            // @ts-ignore
+                            <TH {...column.getHeaderProps(column.getSortByToggleProps())}>
                                 {column.render('Header')}
+                                <span>
+                                    {
+                                        // @ts-ignore
+                                        column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : ''
+                                    }
+                                </span>
                             </TH>
                         ))}
                     </TR>

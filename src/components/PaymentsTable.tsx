@@ -1,5 +1,5 @@
 import { Payment } from "../api/payments"
-import { useTable } from "react-table";
+import { useSortBy, useTable } from "react-table";
 import { Link } from "react-router-dom";
 import { ROUTE_PAYMENTS_SHOW } from "../pages/routes";
 
@@ -60,7 +60,7 @@ export default function PaymentsTable({ data }: Props) {
         // @ts-ignore
         columns: columns,
         data: data
-    })
+    }, useSortBy)
 
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = TableInstance
 
@@ -70,8 +70,15 @@ export default function PaymentsTable({ data }: Props) {
                 {headerGroups.map(headerGroup => (
                     <TR {...headerGroup.getHeaderGroupProps()}>
                         {headerGroup.headers.map(column => (
-                            <TH {...column.getHeaderProps()}>
+                            // @ts-ignore
+                            <TH {...column.getHeaderProps(column.getSortByToggleProps())}>
                                 {column.render('Header')}
+                                <span>
+                                    {
+                                        // @ts-ignore
+                                        column.isSorted ? (column.isSortedDesc ? ' 🔽' : ' 🔼') : ''
+                                    }
+                                </span>
                             </TH>
                         ))}
                     </TR>
