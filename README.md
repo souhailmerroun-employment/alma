@@ -16,6 +16,13 @@ run `npm start` to start the development server
 
 https://github.com/souhailmerroun-employment/alma/blob/70b72b1abbabc0312f704d506657f857f9aa4d7f/package.json#L24
 
+### tests
+
+run `./node_modules/.bin/cypress open` to open the Cypress browser
+
+See [TESTS.md](docs/TESTS.md)
+
 ## usage
 
 See [USAGE.md](docs/USAGE.md)
+
