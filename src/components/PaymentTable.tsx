@@ -1,16 +1,6 @@
 import { useTable, useSortBy } from "react-table";
 import { SinglePayment } from "../api/payment";
-
-type ChildrenProps = {
-    children: React.ReactNode
-}
-
-const Table = ({ children, ...props }: ChildrenProps) => <table className="min-w-full" {...props}>{children}</table>
-const THead = ({ children, ...props }: ChildrenProps) => <thead className="border-b" {...props}>{children}</thead>
-const TBody = ({ children, ...props }: ChildrenProps) => <thead {...props}>{children}</thead>
-const TR = ({ children, ...props }: ChildrenProps) => <tr className="border-b" {...props}>{children}</tr>
-const TH = ({ children, ...props }: ChildrenProps) => <th className="text-sm font-medium text-gray-900 px-6 py-4 text-left" {...props}>{children}</th>
-const TD = ({ children, ...props }: ChildrenProps) => <td className="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap" {...props}>{children}</td>
+import { Table, TBody, TD, TH, THead, TR } from "./Table";
 
 const columns = [
     {

@@ -10,7 +10,7 @@ export default function Payments() {
         <>
             <div className="container mx-auto">
                 <h1 className="text-5xl font-bold mt-0 mb-6">Payments</h1>
-                {isLoading ? <p>Loading...</p> : <PaymentsTable data={data || []} />}
+                {isLoading ? <p data-testid="payments-page-loading">Loading...</p> : <PaymentsTable data={data || []} />}
             </div>
         </>
     )
